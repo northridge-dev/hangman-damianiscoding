@@ -30,6 +30,9 @@ from random import randint
 import os
 os.system('clear')
 
+#for 1 player
+list_of_words = ['apple','bring','character','drawing','elephant','flat','giant','handle','intelligence','jumping','king','large','mountian','nothing','octogan','parrot','quilt','refridgerator','stop','science','teacher','unbelievable','vase','whales','yellow','zebra','terrible','horrible','terrific','unstopable','weird','idea','incomprehendable','going','hangman','list','black','thinking','word','start']
+
 # `play_hangman` is the main function, the function
 # that will orchestrate all the helper functions
 # you define, above.
@@ -37,21 +40,29 @@ def play_hangman():
   # rules
   print(BANNER)
   print("""This is the Hangman Game!
-  There are 2 players involved in the game.
-  Player 1 will be making a 4 to 24 letter word.
-  The word could only have lowercase letters.")
-  Player 2 will then try to guess letters in that word.
-  player 2 can only guess one letter at a time.
-  Player 2 has 6 lives before he loses.""")
-  start = input("Type 's' when you want to start. ")
+  Player will then try to guess letters in that word.
+  Player can only guess one letter at a time.
+  Player has 6 lives before he loses.
+  If you are doing 2 players:
+    Player 1 will be making a 4 to 24 letter word.
+    The word could only have lowercase letters.
+  If you are doing 2 player:
+    You will have to guess a random word.""")
+  start = input("Type 's' when you want to start. ")  
 
   # Game starts
   if start == 's': 
-    the_word = input("Player 1, what is your word? ")
-    len_of_word = len(the_word)
-    word_check_list = word_check(the_word, len_of_word)
-    the_word = word_check_list[0]
-    len_of_word = word_check_list[1]
+    players = input("Type '1' for 1 Player and '2' for 2 Player ")
+    if players == '2':
+      the_word = input("Player 1, what is your word? ")
+      len_of_word = len(the_word)
+      word_check_list = word_check(the_word, len_of_word)
+      the_word = word_check_list[0]
+      len_of_word = word_check_list[1]
+    else:
+      the_word = list_of_words[randint(0, 39)]
+      len_of_word = len(the_word)
+      
     os.system('clear')
 
     # variables
@@ -62,6 +73,7 @@ def play_hangman():
     round = 0
     # the 'used' variables are for keeping track what letter has already been used
     guessed_letters = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    printed_guessed_letters = []
 
     #print how many letters are in the word
     the_word_list = []
@@ -74,10 +86,14 @@ def play_hangman():
 
     # player 2 guesses
     while lives > 0:
+      print('You have already guessed:', printed_guessed_letters)
+      print('lives:', lives )
       guess = input("Player 2, what letter do you guess? ")
       guess = letter_check(guess, guessed_letters)
 
+      #adds letter to the guessed list
       guessed_letters[round - 1] = guess
+      printed_guessed_letters.append(guess)
       place = 0
       correct_for_round = 0
       round += 1
@@ -106,6 +122,8 @@ def play_hangman():
 
       #show how many lives are left
       life_system(lives)
+
+      #check if player lost yet
       if lives == 0:
         print(HANGMAN_PICS[6])
         print("You Lose")
@@ -162,13 +180,13 @@ def letter_check(guess, guessed_letters):
       else: 
         # Checking if they already used that letter.
         counter = 0
-        for i in range(18):
+        for i in range(26):
           if guess == guessed_letters[counter]:
             print("You've already used:", guess)
             guess = input("Player 2, what letter do you guess")
           else:
             counter += 1
-        if counter == 18:
+        if counter == 26:
           return(guess)
 
 #show how many lives are left
@@ -196,4 +214,9 @@ It's just a way to trigger the `play_hangman` function
 when you run this file from the command line.
 """
 if __name__ == "__main__":
-    play_hangman()
+  while True:
+    play = input("Would you like to play hangman? If so, type 'y' ")
+    if play == 'y':
+      play_hangman()
+    else:
+      break
