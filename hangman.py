@@ -31,7 +31,7 @@ import os
 os.system('clear')
 
 #for 1 player
-list_of_words = ['apple','bring','character','drawing','elephant','flat','giant','handle','intelligence','jumping','king','large','mountian','nothing','octogan','parrot','quilt','refridgerator','stop','science','teacher','unbelievable','vase','whales','yellow','zebra','terrible','horrible','terrific','unstopable','weird','idea','incomprehendable','going','hangman','list','black','thinking','word','start']
+list_of_words = ['apple','bring','character','drawing','elephant','flat','giant','handle','intelligence','jumping','king','large','mountian','nothing','octogan','parrot','quilt','refridgerator','stop','science','teacher','unbelievable','vase','whales','yellow','zebra','terrible','horrible','terrific','unstopable','weird','idea','incomprehendable','going','hangman','list','black','thinking','word','start','hint','speedrun','kicking','power','clockwise','counterclockwise','huge','estimate','math','knight','hero','valley','phone','yours','loop','tricky','impossible','cows','animal','xray','lizard','beard','what','lose','correct','incorrect','python','java','area','lost','eight','twentyfour','negative','positve','opposite','will','addition','multiplication','division','right','left','south','north','east','west','house','mouse','envolope','crying','video','game','audio','challenge','destroying','obvious','demonstration','igloo','kangaroo','xylophone','xylem']
 
 # `play_hangman` is the main function, the function
 # that will orchestrate all the helper functions
@@ -52,6 +52,7 @@ def play_hangman():
 
   # Game starts
   if start == 's': 
+    print(len(list_of_words))
     players = input("Type '1' for 1 Player and '2' for 2 Player ")
     if players == '2':
       the_word = input("Player 1, what is your word? ")

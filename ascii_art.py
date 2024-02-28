@@ -15,6 +15,7 @@ BANNER = """
                                      / \  |
                                        =====
 
+      By Damian Mikan
 """
 
 zero_misses = """
