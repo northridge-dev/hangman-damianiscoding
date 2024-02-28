@@ -60,7 +60,7 @@ def play_hangman():
       the_word = word_check_list[0]
       len_of_word = word_check_list[1]
     else:
-      the_word = list_of_words[randint(0, 39)]
+      the_word = list_of_words[randint(0, len(list_of_words)-1 )]
       len_of_word = len(the_word)
       
     os.system('clear')
