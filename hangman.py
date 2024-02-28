@@ -52,7 +52,6 @@ def play_hangman():
 
   # Game starts
   if start == 's': 
-    print(len(list_of_words))
     players = input("Type '1' for 1 Player and '2' for 2 Player ")
     if players == '2':
       the_word = input("Player 1, what is your word? ")
